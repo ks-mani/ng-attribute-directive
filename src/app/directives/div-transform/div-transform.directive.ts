@@ -1,9 +1,21 @@
-import { Directive, ElementRef, HostListener, OnInit } from "@angular/core";
+import {
+  Directive,
+  ElementRef,
+  HostListener,
+  Input,
+  OnInit
+} from "@angular/core";
 
 @Directive({
   selector: "[divTransform]"
 })
 export class DivTransform implements OnInit {
+  @Input("divTransform")
+  private animationType: string;
+
+  @Input("duration")
+  private animationDuration: string;
+
   constructor(private elRef: ElementRef) {}
 
   ngOnInit(): void {
@@ -13,7 +25,9 @@ export class DivTransform implements OnInit {
   @HostListener("mouseover")
   onMouseOver() {
     // Setting the animation using elRef Native Property
-    this.elRef.nativeElement.style.animation = "div-bubble 3s infinite";
+    this.elRef.nativeElement.style.animation = `${this.animationType} ${
+      this.animationDuration
+    }s infinite`;
     this.elRef.nativeElement.style.animationDirection = "alternate";
   }
 
