@@ -10,7 +10,7 @@ import {
   selector: "[divTransform]"
 })
 export class DivTransform implements OnInit {
-  @Input("divTransform")
+  @Input("animationType")
   private animationType: string;
 
   @Input("duration")
