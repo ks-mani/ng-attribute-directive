@@ -16,6 +16,9 @@ export class DivTransform implements OnInit {
   @Input("duration")
   private animationDuration: string;
 
+  @Input("iterationCount")
+  private animationIterationCount: string;
+
   constructor(private elRef: ElementRef) {}
 
   ngOnInit(): void {
@@ -27,7 +30,7 @@ export class DivTransform implements OnInit {
     // Setting the animation using elRef Native Property
     this.elRef.nativeElement.style.animation = `${this.animationType} ${
       this.animationDuration
-    }s infinite`;
+    }s ${this.animationIterationCount}`;
     this.elRef.nativeElement.style.animationDirection = "alternate";
   }
 
