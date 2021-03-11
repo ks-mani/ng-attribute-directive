@@ -1,6 +1,7 @@
 import {
   Directive,
   ElementRef,
+  HostBinding,
   HostListener,
   Input,
   OnInit
@@ -18,6 +19,12 @@ export class DivTransform implements OnInit {
 
   constructor(private elRef: ElementRef) {}
 
+  @HostBinding("style.animation")
+  private animation: string;
+
+  @HostBinding("style.animationDirection")
+  private animationDirection: string;
+
   ngOnInit(): void {
     this.elRef.nativeElement.style.width = "100px";
     this.elRef.nativeElement.style.height = "150px";
@@ -25,15 +32,15 @@ export class DivTransform implements OnInit {
   @HostListener("mouseover")
   onMouseOver() {
     // Setting the animation using elRef Native Property
-    this.elRef.nativeElement.style.animation = `${this.animationType} ${
+    this.animation = `${this.animationType} ${
       this.animationDuration
     }s infinite`;
-    this.elRef.nativeElement.style.animationDirection = "alternate";
+    this.animationDirection = "alternate";
   }
 
   @HostListener("mouseout")
   onMouseOut() {
-    this.elRef.nativeElement.style.animation = "";
-    this.elRef.nativeElement.style.animationDirection = "";
+    this.animation = "";
+    this.animationDirection = "";
   }
 }
